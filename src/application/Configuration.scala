@@ -26,8 +26,8 @@ object Configuration {
   val P_CROSSOVER = 0.001
 
   // Settings of HPSOWM
-  val FIT_1 = 3.0001
-  val FIT_2 = 1.0001
+  val FI_1 = 3.0001
+  val FI_2 = 1.0001
   val WW_MIN = 0.2
   val WW_MAX = 0.5
   val P_M = 0.001

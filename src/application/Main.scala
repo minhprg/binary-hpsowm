@@ -4,5 +4,9 @@ package application
  * Created by qmha on 10/28/14.
  */
 object Main extends App {
-  println("Hello World")
+  /**
+   * Main program. Receives some parameters
+   * 1. Type of agent (GA, PSO, HPSOWM...)
+   * [Being updated]
+   */
 }
