@@ -7,7 +7,7 @@ object Configuration {
   // Benchmark function
   val BF = 15
 
-  val NUMBER_OF_INPUT = 30
+  val NUMBER_OF_INPUT:Int = 30
   val NUMBER_OF_STAGE = 0.5
 
   val ENCODE_BIT = 10
