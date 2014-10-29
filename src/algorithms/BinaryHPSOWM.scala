@@ -78,11 +78,80 @@ class BinaryHPSOWM {
   }
 
   def hpsowm_update = {
+    var i:Int = 0
+    for (i <- 0 until Configuration.POP_SIZE) {
+      var flag:Int = 0
+      this.POPULATION2(i) = Misc.copy_chromosome(this.POPULATION(i))
+      this.OBJECTIVE2(i) = this.OBJECTIVE(i)
 
+      var k:Int = 0
+      for (k <- 0 until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+        var old_value:Int = this.POPULATION(i)(k)
+
+        if (Random.nextDouble() < Misc.my_sigmoid(this.VELOCITY(i)(k))) {
+          this.POPULATION(i)(k) = 1
+        }
+        else {
+          this.POPULATION(i)(k) = 0
+        }
+
+        if (this.POPULATION(i)(k) != old_value)
+          flag = 1
+      }
+
+      if (flag == 1) {
+        this.OBJECTIVE(i) = 10000000000
+      }
+
+      if (!Misc.in_the_range(this.POPULATION(i)) || Misc.cmp_chromosome(this.POPULATION(i), this.G_BEST_CHROMOSOME)) {
+        this.POPULATION(i) = Misc.copy_chromosome(this.POPULATION2(i))
+        this.OBJECTIVE(i) = this.OBJECTIVE2(i)
+      }
+    }
   }
 
-  def hpsowm_wm = {
+  def hpsowm_wm(iot:Double) = {
+    var a:Double = exp( (0 - log (Configuration.GG)) * ( pow (( 1 - iot), Configuration.XI_WM)) + log (Configuration.GG) )
+    var fi:Double = Random.nextDouble() * 5 * a - 2.5 * a
+    var rho:Double = Configuration.GAMA * (1 / sqrt(a)) * exp(0 - (fi / a) * (fi / a) / 2) * cos(5 * fi / a)
 
+    var i:Int = 0
+    for (i <- 0 until Configuration.POP_SIZE) {
+      this.POPULATION2(i) = Misc.copy_chromosome(this.POPULATION(i))
+      this.OBJECTIVE2(i) = this.OBJECTIVE(i)
+
+      var flag:Int = 0
+
+      // Comparable in perl: next if rand() < P_M
+      if (Random.nextDouble() <= Configuration.P_M) {
+        var k:Int = 0
+        for (k <- 0 until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+          var old_value:Int = this.POPULATION(i)(k)
+
+          if (rho > 0) {
+            if (Random.nextDouble() < Misc.my_sigmoid(rho * (old_value - Configuration.PARA_MIN))) {
+              this.POPULATION(i)(k) = 1
+            }
+            else {
+              this.POPULATION(i)(k) = 0
+            }
+          }
+
+          if (this.POPULATION(i)(k) != old_value) {
+            flag = 1
+          }
+
+          if (flag == 1) {
+            this.OBJECTIVE(i) = 10000000000
+          }
+
+          if (!Misc.in_the_range(this.POPULATION(i))) {
+            this.POPULATION(i) = Misc.copy_chromosome(this.POPULATION2(i))
+            this.OBJECTIVE(i) = this.OBJECTIVE2(i)
+          }
+        }
+      }
+    }
   }
 
   // Properties

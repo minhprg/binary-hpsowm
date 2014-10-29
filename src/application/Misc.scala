@@ -67,4 +67,18 @@ object Misc {
 
     w
   }
+
+  def my_sigmoid(t:Double):Double = {
+    1 / (1 + exp(-t))
+  }
+
+  def cmp_chromosome(c1:ArrayBuffer[Int], c2:ArrayBuffer[Int]):Boolean = {
+    var k:Int = 0
+    for (k <- 0 until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+      if (c2(k) != c1(k))
+        return false
+    }
+
+    true
+  }
 }
