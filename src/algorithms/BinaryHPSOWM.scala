@@ -1,8 +1,7 @@
 package algorithms
 
 import scala.collection.mutable.ArrayBuffer
-import application.Configuration
-import application.Misc
+import application.{Benchmark, Configuration, Misc}
 import scala.math._
 import scala.util.Random
 
@@ -100,7 +99,7 @@ class BinaryHPSOWM {
       }
 
       if (flag == 1) {
-        this.OBJECTIVE(i) = 10000000000
+        this.OBJECTIVE(i) = 1000000000
       }
 
       if (!Misc.in_the_range(this.POPULATION(i)) || Misc.cmp_chromosome(this.POPULATION(i), this.G_BEST_CHROMOSOME)) {
@@ -142,7 +141,7 @@ class BinaryHPSOWM {
           }
 
           if (flag == 1) {
-            this.OBJECTIVE(i) = 10000000000
+            this.OBJECTIVE(i) = 1000000000
           }
 
           if (!Misc.in_the_range(this.POPULATION(i))) {
@@ -154,16 +153,79 @@ class BinaryHPSOWM {
     }
   }
 
-  // Properties
-  val POPULATION:ArrayBuffer[ArrayBuffer[Int]] = new ArrayBuffer[ArrayBuffer[Int]]()
-  val POPULATION2:ArrayBuffer[ArrayBuffer[Int]] = new ArrayBuffer[ArrayBuffer[Int]]()
-  val OBJECTIVE:ArrayBuffer[Double] = new ArrayBuffer[Double]()
-  val OBJECTIVE2:ArrayBuffer[Double] = new ArrayBuffer[Double]()
+  def restore_population(filepath:String) = {
+    val source = scala.io.Source.fromFile(filepath)
+    val lines = source.getLines()
 
-  val VELOCITY:ArrayBuffer[ArrayBuffer[Double]] = new ArrayBuffer[ArrayBuffer[Double]]()
-  var P_BEST_CHROMOSOME:ArrayBuffer[ArrayBuffer[Int]] = new ArrayBuffer[ArrayBuffer[Int]]()
-  var P_BEST_OBJECTIVE:ArrayBuffer[Double] = new ArrayBuffer[Double]()
-  var G_BEST_CHROMOSOME:ArrayBuffer[Int] = new ArrayBuffer[Int]()
+    var i:Int = 0
+    lines.foreach(line => {
+      if (line.charAt(0) != '[') {
+        // Objective value
+        this.OBJECTIVE(i) = line.toInt
+      }
+      else {
+        // A chromosome need to be processed
+        var newline:String = line.substring(1, line.length - 1)
+        var ft = newline.split(',')
+        ft = ft.map(f => f.trim)
+
+        var count:Int = 0
+        for (k <- 0 until Configuration.NUMBER_OF_INPUT) {
+          var l:Int = 0
+          for (l <- 0 until (3 * Configuration.WEIGHT_BIT)) {
+            this.POPULATION(i)(k * (3 * Configuration.WEIGHT_BIT + 1) + l) = ft(count).toInt
+            count = count + 1
+          }
+
+          this.POPULATION(i)(k * (3 * Configuration.WEIGHT_BIT + 1) + (3 * Configuration.WEIGHT_BIT)) = ft(count).toInt
+          count = count + 1
+        }
+
+        i = i + 1
+      }
+    })
+  }
+
+  def evaluation_benchmark = {
+    var output:Double = 0
+    var i:Int = 0
+    for (i <- 0 until Configuration.POP_SIZE) {
+      // only process if it is new chromosome. Comparable to perl: next if objective != 1000000000
+      if (this.OBJECTIVE(i) == 1000000000) {
+        if (Configuration.BF == 1)
+          output = Benchmark.f1(this.POPULATION(i))
+        else if (Configuration.BF == 6)
+          output = Benchmark.f6(this.POPULATION(i))
+        else if (Configuration.BF == 12)
+          output = Benchmark.f12(this.POPULATION(i))
+        else if (Configuration.BF == 14)
+          output = Benchmark.f14(this.POPULATION(i))
+        else
+          output = Benchmark.f15((this.POPULATION(i)))
+
+        this.OBJECTIVE(i) = output
+      }
+    }
+  }
+
+  // Properties
+  val POPULATION:ArrayBuffer[ArrayBuffer[Int]] =
+    ArrayBuffer.fill(Configuration.POP_SIZE)(ArrayBuffer.fill(Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)(1))
+  val POPULATION2:ArrayBuffer[ArrayBuffer[Int]] =
+    ArrayBuffer.fill(Configuration.POP_SIZE)(ArrayBuffer.fill(Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)(1))
+  val OBJECTIVE:ArrayBuffer[Double] =
+    ArrayBuffer.fill(Configuration.POP_SIZE)(1000000000)
+  val OBJECTIVE2:ArrayBuffer[Double] =
+    ArrayBuffer.fill(Configuration.POP_SIZE)(1000000000)
+
+  val VELOCITY:ArrayBuffer[ArrayBuffer[Double]] =
+    ArrayBuffer.fill(Configuration.POP_SIZE)(ArrayBuffer.fill(Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)(1.0))
+  var P_BEST_CHROMOSOME:ArrayBuffer[ArrayBuffer[Int]] =
+    ArrayBuffer.fill(Configuration.POP_SIZE)(ArrayBuffer.fill(Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)(1))
+  var P_BEST_OBJECTIVE:ArrayBuffer[Double] =
+    ArrayBuffer.fill(Configuration.POP_SIZE)(1000000000)
+  var G_BEST_CHROMOSOME:ArrayBuffer[Int] =
+    ArrayBuffer.fill(Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)(1)
   var G_BEST_OBJECTIVE:Double = 100000000
   var OC:Int = 0
   val save_best_object = 10000

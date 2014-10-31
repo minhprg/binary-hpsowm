@@ -12,11 +12,12 @@ object Misc {
   }
 
   def copy_chromosome(original:ArrayBuffer[Int]):ArrayBuffer[Int] = {
-    var to_be_transfered:ArrayBuffer[Int] = new ArrayBuffer[Int]()
+    var to_be_transfered:ArrayBuffer[Int] = ArrayBuffer.fill((Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1)))(-1)
     var k:Int = 0
 
-    for (k <- 0 until (Configuration.NUMBER_OF_INPUT * (3 * $WEIGHT_BIT + 1))) {
-      original(k) = to_be_transfered(k)
+    for (k <- 0 until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+      //original(k) = to_be_transfered(k)
+      to_be_transfered(k) = original(k)
     }
 
     to_be_transfered
@@ -26,7 +27,7 @@ object Misc {
     var i:Int = 0
 
     for (i <- 0 until Configuration.NUMBER_OF_INPUT) {
-      var base_2:ArrayBuffer[Int] = new ArrayBuffer[Int]()
+      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(-1)
       var j:Int = 0
       for (j <- 0 until Configuration.ENCODE_BIT) {
         base_2(j) = chromosome(i * Configuration.ENCODE_BIT + j)
@@ -51,7 +52,7 @@ object Misc {
         throw new Exception ("Error: input string is not base 2!")
       }
 
-      w += base_2(i) * (pow(2, (Configuration.ENCODE_BIT - i - 1)))
+      w = w + base_2(i) * (pow(2, (Configuration.ENCODE_BIT - i - 1))).toInt
     }
 
     if (base_2(0) == 1) {

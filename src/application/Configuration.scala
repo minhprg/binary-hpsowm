@@ -4,6 +4,7 @@ package application
  * Created by qmha on 10/28/14.
  */
 object Configuration {
+  val FILEPATH:String = "/Users/qmha/projects/bhpsowm/src/population_store"
   // Benchmark function
   val BF = 15
 
@@ -11,7 +12,7 @@ object Configuration {
   val NUMBER_OF_STAGE = 0.5
 
   val ENCODE_BIT = 10
-  var WEIGHT_BIT:Double = (ENCODE_BIT - 1) / 3
+  var WEIGHT_BIT:Int = (ENCODE_BIT - 1) / 3
   val DECIMAL = 2 // the number of figures after the floating point
 
   val X_MAX = 10.24
@@ -40,7 +41,8 @@ object Configuration {
   val GAMA = 1
 
   // Running time
-  val MAX_TIME = 60 * 60 * 24 * 7 / 200
+  //val MAX_TIME = 60 * 60 * 24 * 7 / 200
+  val MAX_TIME = 60
 
   // Settings of ROC evalution
   val THRESHOLD = 0
