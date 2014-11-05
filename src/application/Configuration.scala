@@ -5,6 +5,8 @@ package application
  */
 object Configuration {
   val FILEPATH:String = "/Users/qmha/projects/bhpsowm/src/population_store"
+  val FILE_RESULT_PREFIX:String = "/Users/qmha/projects/bhpsowm/src/cmp_result/set1/"
+
   // Benchmark function
   val BF = 15
 
@@ -39,6 +41,8 @@ object Configuration {
   val V_MAX = 5
   val KKKK = 4 // ???
   val GAMA = 1
+
+  // Settings of BPSO
 
   // Running time
   //val MAX_TIME = 60 * 60 * 24 * 7 / 200
