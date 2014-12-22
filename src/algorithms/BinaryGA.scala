@@ -16,8 +16,8 @@ class BinaryGA {
     var k = 0
 
     for (i <- 0 until Configuration.POP_SIZE) {
-      for (k <- 0 until (Configuration.NUMBER_OF_INPUT  * (3 * Configuration.WEIGHT_BIT + 1))) {
-        this.POPULATION2(i) += 0
+      for (k <- 0 until (Configuration.NUMBER_OF_INPUT  * Configuration.ENCODE_BIT)) {
+        this.POPULATION2(i)(k) = 0
       }
     }
   }

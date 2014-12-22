@@ -2,6 +2,7 @@ package application
 
 import scala.collection.mutable.ArrayBuffer
 import scala.math._
+import scala.util.Random
 
 /**
  * Created by qmha on 10/28/14.
@@ -81,5 +82,9 @@ object Misc {
     }
 
     true
+  }
+
+  def get_random():Double = {
+    Random.nextDouble() * Random.nextDouble()
   }
 }
