@@ -49,9 +49,18 @@ class BinaryPSO {
         this.VELOCITY(i)(k) = Random.nextDouble() * (this.P_BEST_CHROMOSOME(i)(k) - this.POPULATION(i)(k)) +
                               Random.nextDouble() * (this.G_BEST_CHROMOSOME(k) - this.POPULATION(i)(k))
       }
+      // ??? Need to check V_MAX  ???
+      if (this.VELOCITY(i)(k) > Configuration.V_MAX) {
+        this.VELOCITY(i)(k) = Configuration.V_MAX
+      }
+      else if (this.VELOCITY(i)(k) < 0 - Configuration.V_MAX) {
+        this.VELOCITY(i)(k) = 0 - Configuration.V_MAX
+      }
     }
 
-    // ??? Need to check V_MAX  ???
+    this.OC += 1
+    if (this.OC == Configuration.POP_SIZE)
+      this.OC = 0
   }
 
   // Calculate Present values

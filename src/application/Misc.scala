@@ -13,10 +13,10 @@ object Misc {
   }
 
   def copy_chromosome(original:ArrayBuffer[Int]):ArrayBuffer[Int] = {
-    var to_be_transfered:ArrayBuffer[Int] = ArrayBuffer.fill((Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1)))(-1)
+    var to_be_transfered:ArrayBuffer[Int] = ArrayBuffer.fill((Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT))(-1)
     var k:Int = 0
 
-    for (k <- 0 until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+    for (k <- 0 until (Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)) {
       //original(k) = to_be_transfered(k)
       to_be_transfered(k) = original(k)
     }
@@ -28,7 +28,7 @@ object Misc {
     var i:Int = 0
 
     for (i <- 0 until Configuration.NUMBER_OF_INPUT) {
-      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(-1)
+      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
       var j:Int = 0
       for (j <- 0 until Configuration.ENCODE_BIT) {
         base_2(j) = chromosome(i * Configuration.ENCODE_BIT + j)
@@ -76,7 +76,7 @@ object Misc {
 
   def cmp_chromosome(c1:ArrayBuffer[Int], c2:ArrayBuffer[Int]):Boolean = {
     var k:Int = 0
-    for (k <- 0 until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+    for (k <- 0 until (Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)) {
       if (c2(k) != c1(k))
         return false
     }

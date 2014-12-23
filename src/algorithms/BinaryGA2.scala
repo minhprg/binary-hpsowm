@@ -1,29 +1,28 @@
 package algorithms
 
-import application.Configuration
-import application.Misc
-import application.Benchmark
+import application.{Benchmark, Configuration, Misc}
+
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
-import scala.util.control.Breaks._
 
 /**
- * Created by qmha on 10/28/14.
+ * Created by qmha on 12/23/14.
  */
-class BinaryGA {
+class BinaryGA2 {
+
   def initialization_ga = {
-    var i = 0
-    var k = 0
+    var i:Int = 0
+    var k:Int = 0
 
     for (i <- 0 until Configuration.POP_SIZE) {
-      for (k <- 0 until (Configuration.NUMBER_OF_INPUT  * Configuration.ENCODE_BIT)) {
-        this.POPULATION2(i)(k) = 1
+      for (k <- 0 until (Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)) {
+        this.POPULATION2(i)(k) = 0
       }
     }
   }
 
   def selection = {
-    // Sorting using simple bubble sort
+    // sort
     var a:Double = 0
     var i:Int = 0
     var j:Int = 0
@@ -32,10 +31,9 @@ class BinaryGA {
       for (j <- (i + 1) until Configuration.POP_SIZE) {
         if (this.OBJECTIVE(i) >= this.OBJECTIVE(j)) {
           var temp:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)(1)
-
           temp = Misc.copy_chromosome(this.POPULATION(i))
           this.POPULATION(i) = Misc.copy_chromosome(this.POPULATION(j))
-          this.POPULATION(j) = temp
+          this.POPULATION(j) = Misc.copy_chromosome(temp)
 
           a = this.OBJECTIVE(i)
           this.OBJECTIVE(i) = this.OBJECTIVE(j)
@@ -44,12 +42,13 @@ class BinaryGA {
       }
     }
 
-    // Save the best chromosome
+    // save the best chromosome
     if (this.BEST_OBJECTIVE >= this.OBJECTIVE(0)) {
       this.BEST_CHROMOSOME = Misc.copy_chromosome(this.POPULATION(0))
       this.BEST_OBJECTIVE = this.OBJECTIVE(0)
     }
 
+    // New population
     var q:ArrayBuffer[Double] = ArrayBuffer.fill(Configuration.POP_SIZE)(0)
     q(0) = 1
 
@@ -60,12 +59,14 @@ class BinaryGA {
       q(i) = q(i - 1) + t
     }
 
-    var is_break:Boolean = false
     for (i <- 0 until Configuration.POP_SIZE) {
-      r = Random.nextDouble() % q(Configuration.POP_SIZE - 1)
+      // ???? perl is random (0,...)
+      r = q(Configuration.POP_SIZE - 1) * Random.nextDouble()
       var j:Int = 0
+
+      var is_break:Boolean = false
       for (j <- 0 until Configuration.POP_SIZE) {
-        if (r <= q(j) && is_break == false) {
+        if (is_break == false && r <= q(j)) {
           this.POPULATION2(i) = Misc.copy_chromosome(this.POPULATION(j))
           this.OBJECTIVE2(i) = this.OBJECTIVE(j)
           is_break = true
@@ -90,18 +91,18 @@ class BinaryGA {
       for (j <- (i + 1) until Configuration.POP_SIZE) {
         // comparable to perl : next if (rand() > P_CROSSOVER)
         if (Random.nextDouble() <= Configuration.P_CROSSOVER) {
-          this.POPULATION2(i) = this.POPULATION(i)
+          this.POPULATION2(i) = Misc.copy_chromosome(this.POPULATION(i))
           this.OBJECTIVE2(i) = this.OBJECTIVE(i)
 
-          this.POPULATION2(j) = this.POPULATION(j)
+          this.POPULATION2(j) = Misc.copy_chromosome(this.POPULATION(j))
           this.OBJECTIVE2(j) = this.OBJECTIVE2(j)
 
           // crossover point
-          point_c = Random.nextInt(Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT.toInt + 1))
+          point_c = Random.nextInt(Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)
 
           // cross it!
           var l:Int = 0
-          for (l <- point_c until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+          for (l <- point_c until (Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)) {
             // swap the bit
             bit = this.POPULATION(i)(l)
             this.POPULATION(i)(l) = this.POPULATION(j)(l)
@@ -109,10 +110,10 @@ class BinaryGA {
           }
 
           // crossover point
-          point_c = Random.nextInt(Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT.toInt + 1))
+          point_c = Random.nextInt(Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)
 
           // cross it!
-          for (l <- point_c until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+          for (l <- point_c until (Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)) {
             // swap the bit
             bit = this.POPULATION(i)(l)
             this.POPULATION(i)(l) = this.POPULATION(j)(l)
@@ -142,7 +143,7 @@ class BinaryGA {
       this.OBJECTIVE2(i) = this.OBJECTIVE(i)
 
       var l:Int = 0
-      for (l <- 0 until (Configuration.NUMBER_OF_INPUT * (3 * Configuration.WEIGHT_BIT + 1))) {
+      for (l <- 0 until (Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)) {
         // comparable to Perl: next if (rand() > P_MUTATION)
         if (Random.nextDouble() <= Configuration.P_MUTATION) {
           if (this.POPULATION(i)(l) == 1) {
