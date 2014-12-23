@@ -8,7 +8,7 @@ object Configuration {
   val FILE_RESULT_PREFIX:String = "/Users/qmha/projects/bhpsowm/src/cmp_result/set1/"
 
   // Benchmark function
-  val BF = 15
+  var BF = 15
 
   val NUMBER_OF_INPUT:Int = 30
   val NUMBER_OF_STAGE = 0.5
@@ -19,7 +19,7 @@ object Configuration {
 
   val X_MAX = 10.24
   val X_MIN = -5.12
-  val OPTIMAL = 0 // optimal solution
+  var OPTIMAL:Double = 0 // optimal solution
 
   // Settings of evolution
   val POP_SIZE = 50

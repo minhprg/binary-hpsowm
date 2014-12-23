@@ -79,7 +79,6 @@ object Benchmark {
 
       output += x * x - 10 * cos(2 * PI * x) + 10
 
-      //println("Benchmark = " + output)
     }
 
     return output

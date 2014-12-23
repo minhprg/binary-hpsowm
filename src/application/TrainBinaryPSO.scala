@@ -7,6 +7,13 @@ import algorithms.BinaryPSO
  */
 object TrainBinaryPSO {
   def main(args:Array[String]):Unit = {
+    // Arguments checking
+    if (args.length == 2) {
+      Configuration.BF = args(0).toInt
+      Configuration.OPTIMAL = args(1).toDouble
+    }
+
+    // Start
     var start_time = System.currentTimeMillis / 1000
     var bpso_agent = new BinaryPSO
 
