@@ -8,9 +8,11 @@ import algorithms.BinaryPSO
 object TrainBinaryPSO {
   def main(args:Array[String]):Unit = {
     // Arguments checking
-    if (args.length == 2) {
+    if (args.length == 4) {
       Configuration.BF = args(0).toInt
       Configuration.OPTIMAL = args(1).toDouble
+      Configuration.X_MIN = args(2).toDouble
+      Configuration.X_MAX = args(3).toDouble
     }
 
     // Start

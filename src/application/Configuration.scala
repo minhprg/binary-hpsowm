@@ -8,10 +8,10 @@ object Configuration {
   var FILE_RESULT_PREFIX:String = "/Users/qmha/projects/bhpsowm/src/cmp_result/1/"
 
   // Benchmark function
-  var BF = 7
-  var OPTIMAL:Double = -1 // optimal solution
+  var BF = 1
+  var OPTIMAL:Double = 0 // optimal solution
   // Running time
-  val MAX_TIME = 60
+  val MAX_TIME = 120
 
   val NUMBER_OF_INPUT:Int = 30
   val NUMBER_OF_STAGE = 0.5
@@ -22,8 +22,9 @@ object Configuration {
 
   //val X_MAX = 10.24
   //val X_MIN = -5.12
-  val X_MAX = 421
-  val X_MIN = -5.12
+  var X_MIN:Double = -100
+  var X_MAX:Double = 100
+
 
   // Settings of evolution
   val POP_SIZE = 50
@@ -42,7 +43,7 @@ object Configuration {
   val GG = 1000
   val PARA_MAX = 1
   val PARA_MIN = 0
-  val V_MAX = 5
+  val V_MAX = 6
   val KKKK = 4 // ???
   val GAMA = 1
 

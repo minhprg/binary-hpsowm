@@ -135,7 +135,6 @@ object Benchmark {
     (fx1 + fx2)
   }
 
-  // Easom function
   def f7(particle:ArrayBuffer[Int]):Double = {
     var i:Int = 0
     var j:Int = 0
@@ -154,47 +153,79 @@ object Benchmark {
       x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
       x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
 
-      fx = -1 * cos(x_1) * cos(x_2) * exp(-(pow(x_1 - Pi,2) + pow(x_2 - Pi,2)))
+      fx = -cos(x_1) * cos(x_2) * exp(-(pow(x_1 - Pi,2) + pow(x_2 - Pi,2)))
     }
 
     fx
   }
 
+  // Easom function
   def f8(particle:ArrayBuffer[Int]):Double = {
+    // pre-defined matrix for easom function
+    val a:Array[Array[Int]] = Array(
+      Array(-32, -16, 0, 16, 32, -32, -16, 0, 16, 32, -32, -16, 0, 16, 32, -32, -16, 0, 16, 32, -32, -16, 0, 16, 32),
+      Array(-32, -32, -32, -32, -32, -16, -16, -16, -16, -16, 0, 0, 0, 0, 0, 16, 16, 16, 16, 16, 32, 32, 32, 32, 32)
+    )
+
     var i:Int = 0
     var j:Int = 0
+    var k:Int = 0
     var fx:Double = 0
 
-    for (i <- 0 until Configuration.NUMBER_OF_INPUT) {
-      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
-      var x:Double = 0
-      for (j <- 0 until Configuration.ENCODE_BIT) {
-        base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
+    for (j <- 0 until 25) {
+      var fi:Double = 0
+      for (i <- 0 until 2) {
+        var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+        var x:Double = 0
+        for (k <- 0 until Configuration.ENCODE_BIT) {
+          base_2(k) = particle(i * Configuration.ENCODE_BIT + k)
+        }
+
+        x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+
+        fi += pow(x - a(i)(j),6)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
-
-      fx += x * x
+      fx += (1/(j + fi))
     }
 
-    fx
+    pow(((1/500) + fx), -1)
   }
 
+  // Kowalik function
   def f9(particle:ArrayBuffer[Int]):Double = {
+    var a:Array[Double] = Array(0.1957, 0.1947, 0.1735, 0.1600, 0.0844, 0.0627, 0.0456, 0.0342, 0.0323, 0.0235, 0.0246)
+    // b^(-1)
+    var b:Array[Double] = Array(0.25, 0.5, 1, 2, 4, 6, 8, 10, 12, 14, 16)
+
     var i:Int = 0
     var j:Int = 0
     var fx:Double = 0
 
-    for (i <- 0 until Configuration.NUMBER_OF_INPUT) {
-      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
-      var x:Double = 0
+    for (i <- 0 until 11) {
+      var base_2_1:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_3:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_4:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+
+      var x_1:Double = 0
+      var x_2:Double = 0
+      var x_3:Double = 0
+      var x_4:Double = 0
+
       for (j <- 0 until Configuration.ENCODE_BIT) {
-        base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
+        base_2_1(j) = particle(i * Configuration.ENCODE_BIT + j)
+        base_2_2(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
+        base_2_3(j) = particle((i + 2) * Configuration.ENCODE_BIT + j)
+        base_2_4(j) = particle((i + 3) * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
+      x_3 = Misc.base_2_to_10(base_2_3) / pow(10, Configuration.DECIMAL)
+      x_4 = Misc.base_2_to_10(base_2_4) / pow(10, Configuration.DECIMAL)
 
-      fx += x * x
+      fx += pow(a(i) - (x_1 * (pow(pow(b(i), -1),2) + pow(b(i),-1) * x_2)) / (pow(pow(b(i), 2),-1) + b(i) * x_3 + x_4), 2)
     }
 
     fx
@@ -205,16 +236,22 @@ object Benchmark {
     var j:Int = 0
     var fx:Double = 0
 
-    for (i <- 0 until Configuration.NUMBER_OF_INPUT) {
-      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
-      var x:Double = 0
+    for (i <- 0 until 1) {
+      var base_2_1:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+
+      var x_1:Double = 0
+      var x_2:Double = 0
+
       for (j <- 0 until Configuration.ENCODE_BIT) {
-        base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
+        base_2_1(j) = particle(i * Configuration.ENCODE_BIT + j)
+        base_2_2(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
 
-      fx += x * x
+      fx = -(sin(x_1) * sin(x_2) / (x_1 * x_2))
     }
 
     fx
@@ -225,16 +262,22 @@ object Benchmark {
     var j:Int = 0
     var fx:Double = 0
 
-    for (i <- 0 until Configuration.NUMBER_OF_INPUT) {
-      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
-      var x:Double = 0
+    for (i <- 0 until 1) {
+      var base_2_1:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+
+      var x_1:Double = 0
+      var x_2:Double = 0
+
       for (j <- 0 until Configuration.ENCODE_BIT) {
-        base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
+        base_2_1(j) = particle(i * Configuration.ENCODE_BIT + j)
+        base_2_2(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
 
-      fx += x * x
+      fx = (4 * pow(x_1, 2) - 2.1 * pow(x_1, 2) + (1/3) * pow(x_1, 4) + x_1 * x_2 - 4 * pow(x_2, 2) + 4 * pow(x_2, 4))
     }
 
     fx
