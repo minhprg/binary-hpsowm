@@ -46,8 +46,9 @@ class BinaryPSO {
     for (i <- 0 until Configuration.POP_SIZE) {
       var k:Int = 0
       for (k <- 0 until (Configuration.NUMBER_OF_INPUT * Configuration.ENCODE_BIT)) {
-        this.VELOCITY(i)(k) = Random.nextDouble() * (this.P_BEST_CHROMOSOME(i)(k) - this.POPULATION(i)(k)) +
-                              Random.nextDouble() * (this.G_BEST_CHROMOSOME(k) - this.POPULATION(i)(k))
+        this.VELOCITY(i)(k) = this.VELOCITY(i)(k) +
+                              2 * Random.nextDouble() * (this.P_BEST_CHROMOSOME(i)(k) - this.POPULATION(i)(k)) +
+                              2 * Random.nextDouble() * (this.G_BEST_CHROMOSOME(k) - this.POPULATION(i)(k))
       }
       // ??? Need to check V_MAX  ???
       if (this.VELOCITY(i)(k) > Configuration.V_MAX) {

@@ -5,10 +5,13 @@ package application
  */
 object Configuration {
   val FILEPATH:String = "/Users/qmha/projects/bhpsowm/src/population_store"
-  val FILE_RESULT_PREFIX:String = "/Users/qmha/projects/bhpsowm/src/cmp_result/set1/"
+  var FILE_RESULT_PREFIX:String = "/Users/qmha/projects/bhpsowm/src/cmp_result/1/"
 
   // Benchmark function
-  var BF = 15
+  var BF = 7
+  var OPTIMAL:Double = -1 // optimal solution
+  // Running time
+  val MAX_TIME = 60
 
   val NUMBER_OF_INPUT:Int = 30
   val NUMBER_OF_STAGE = 0.5
@@ -17,9 +20,10 @@ object Configuration {
   var WEIGHT_BIT:Int = (ENCODE_BIT - 1) / 3
   val DECIMAL = 2 // the number of figures after the floating point
 
-  val X_MAX = 10.24
+  //val X_MAX = 10.24
+  //val X_MIN = -5.12
+  val X_MAX = 421
   val X_MIN = -5.12
-  var OPTIMAL:Double = 0 // optimal solution
 
   // Settings of evolution
   val POP_SIZE = 50
@@ -43,10 +47,6 @@ object Configuration {
   val GAMA = 1
 
   // Settings of BPSO
-
-  // Running time
-  //val MAX_TIME = 60 * 60 * 24 * 7 / 200
-  val MAX_TIME = 60
 
   // Settings of ROC evalution
   val THRESHOLD = 0

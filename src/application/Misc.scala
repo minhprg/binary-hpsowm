@@ -87,4 +87,6 @@ object Misc {
   def get_random():Double = {
     Random.nextDouble() * Random.nextDouble()
   }
+
+  def parseDouble(s: String) = try { s.toDouble } catch { case _ => None }
 }
