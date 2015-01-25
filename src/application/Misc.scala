@@ -34,7 +34,11 @@ object Misc {
         base_2(j) = chromosome(i * Configuration.ENCODE_BIT + j)
       }
 
-      var x:Double = base_2_to_10(base_2) / (pow(10, Configuration.DECIMAL))
+      //var x:Double = base_2_to_10(base_2) / (pow(10, Configuration.DECIMAL))
+      // new version which dynamically calculate this decimal point
+      var x:Double = base_2_to_10(base_2) / (pow(10, getDecimalPoint(base_2_to_10(base_2))))
+
+      //println("x is :" + x + ". Origin = " + (x * (pow(10, getDecimalPoint(base_2_to_10(base_2))))) + ". X_Max = " + Configuration.X_MAX)
 
       if (x > Configuration.X_MAX || x < Configuration.X_MIN) {
         return false
@@ -89,4 +93,19 @@ object Misc {
   }
 
   def parseDouble(s: String) = try { s.toDouble } catch { case _ => None }
+
+  def getDecimalPoint(x:Double):Int = {
+    //println("Working with : " + x)
+    if (x >= Configuration.X_MIN && x <= Configuration.X_MAX) {
+      //println("In range!")
+      return 0
+    }
+    else if (abs(log10(abs(x)).toInt - log10(Configuration.X_MAX).toInt) == 0) {
+      return 1
+    }
+    else {
+      return abs(log10(abs(x)).toInt - log10(Configuration.X_MAX).toInt)
+    }
+
+  }
 }
