@@ -20,7 +20,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx += x * x
     }
@@ -43,8 +43,8 @@ object Benchmark {
         base_2_1(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
       }
 
-      x1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
-      x2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
+      x1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))
+      x2 = Misc.base_2_to_10(base_2_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_2)))
 
       fx += 100 * pow((x2 - x1 * x1), 2) + pow((x1 - 1), 2)
     }
@@ -64,7 +64,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx += pow((abs(x + 0.5)),2)
     }
@@ -84,7 +84,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx += (i * pow(x, 4))
     }
@@ -104,7 +104,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       if (abs(x) > fx)
         fx = abs(x)
@@ -126,7 +126,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx1 += abs(x)
       fx2 = fx2 * abs(x)
@@ -150,8 +150,8 @@ object Benchmark {
         base_2_2(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
       }
 
-      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
-      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_2)))
 
       fx = -cos(x_1) * cos(x_2) * exp(-(pow(x_1 - Pi,2) + pow(x_2 - Pi,2)))
     }
@@ -181,7 +181,7 @@ object Benchmark {
           base_2(k) = particle(i * Configuration.ENCODE_BIT + k)
         }
 
-        x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+        x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
         fi += pow(x - a(i)(j),6)
       }
@@ -220,10 +220,10 @@ object Benchmark {
         base_2_4(j) = particle((i + 3) * Configuration.ENCODE_BIT + j)
       }
 
-      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
-      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
-      x_3 = Misc.base_2_to_10(base_2_3) / pow(10, Configuration.DECIMAL)
-      x_4 = Misc.base_2_to_10(base_2_4) / pow(10, Configuration.DECIMAL)
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_2)))
+      x_3 = Misc.base_2_to_10(base_2_3) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_3)))
+      x_4 = Misc.base_2_to_10(base_2_4) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_4)))
 
       fx += pow(a(i) - (x_1 * (pow(pow(b(i), -1),2) + pow(b(i),-1) * x_2)) / (pow(pow(b(i), 2),-1) + b(i) * x_3 + x_4), 2)
     }
@@ -248,8 +248,8 @@ object Benchmark {
         base_2_2(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
       }
 
-      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
-      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_2)))
 
       fx = -(sin(x_1) * sin(x_2) / (x_1 * x_2))
     }
@@ -274,8 +274,8 @@ object Benchmark {
         base_2_2(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
       }
 
-      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
-      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Configuration.DECIMAL)
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_2)))
 
       fx = (4 * pow(x_1, 2) - 2.1 * pow(x_1, 2) + (1/3) * pow(x_1, 4) + x_1 * x_2 - 4 * pow(x_2, 2) + 4 * pow(x_2, 4))
     }
@@ -295,7 +295,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx += x * x
     }
@@ -315,7 +315,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx += x * x
     }
@@ -341,7 +341,7 @@ object Benchmark {
           base_2_1(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       if (i == 0) {
         fx += sin(3 * Pi * x) * sin(3 * Pi * x)
@@ -350,7 +350,7 @@ object Benchmark {
         fx += pow((x - 1), 2) * (1 + (sin(2 * Pi *x) * sin(2 * Pi *x)))
       }
       else {
-        x1 = Misc.base_2_to_10(base_2_1) / pow(10, Configuration.DECIMAL)
+        x1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))
         fx += pow((x - 1), 2) * (1 + (sin(3 * Pi * x1) * sin(3 * Pi * x1)))
       }
 
@@ -384,7 +384,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      var x:Double = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      var x:Double = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       output += x * x - 10 * cos(2 * PI * x) + 10
 
@@ -407,7 +407,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx1 += x * x
       fx2 = fx2 * (cos(x / sqrt(i)))
@@ -429,7 +429,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx1 += x * x
       fx2 += cos(2 * Pi * x)
@@ -450,7 +450,7 @@ object Benchmark {
         base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Configuration.DECIMAL)
+      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
       fx += x * sin(sqrt(abs(x)))
     }
