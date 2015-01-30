@@ -100,12 +100,14 @@ object Misc {
       //println("In range!")
       return 0
     }
-    else if (abs(log10(abs(x)).toInt - log10(Configuration.X_MAX).toInt) == 0) {
-      return 1
-    }
     else {
-      return abs(log10(abs(x)).toInt - log10(Configuration.X_MAX).toInt)
+      var counter:Int = 0
+      var tmp:Double = x
+      while (tmp < Configuration.X_MIN || tmp > Configuration.X_MAX) {
+        tmp = tmp / 10
+        counter = counter + 1
+      }
+      return counter
     }
-
   }
 }

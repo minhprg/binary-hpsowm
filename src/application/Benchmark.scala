@@ -40,7 +40,7 @@ object Benchmark {
       var x2:Double = 0
       for (j <- 0 until Configuration.ENCODE_BIT) {
         base_2_1(j) = particle(i * Configuration.ENCODE_BIT + j)
-        base_2_1(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
+        base_2_2(j) = particle((i + 1) * Configuration.ENCODE_BIT + j)
       }
 
       x1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))

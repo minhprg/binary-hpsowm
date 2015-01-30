@@ -8,7 +8,7 @@ object Configuration {
   var FILE_RESULT_PREFIX:String = "/Users/qmha/projects/bhpsowm/src/cmp_result/1/"
 
   // Benchmark function
-  var BF = 15
+  var BF = 2
   var OPTIMAL:Double = 0 // optimal solution
   // Running time
   val MAX_TIME = 120
@@ -22,8 +22,8 @@ object Configuration {
 
   //val X_MAX = 10.24
   //val X_MIN = -5.12
-  var X_MIN:Double = -50
-  var X_MAX:Double = 50
+  var X_MIN:Double = -2.048
+  var X_MAX:Double = 2.048
 
 
   // Settings of evolution
