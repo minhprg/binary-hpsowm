@@ -110,4 +110,12 @@ object Misc {
       return counter
     }
   }
+
+  // Matrix multiplication
+  def matrixMultiplication(a: Array[Array[Double]], b: Array[Array[Double]])(implicit n: Numeric[Double]) = {
+    import n._
+    for (row <- a)
+    yield for(col <- b.transpose)
+    yield row zip col map Function.tupled(_*_) reduceLeft (_+_)
+  }
 }

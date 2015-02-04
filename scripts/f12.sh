@@ -1,6 +1,6 @@
 #!/bin/bash
 BHPSOWM_FUNCTION=12
-BHPSOWM_OPTIMAL=-3.8628
+BHPSOWM_OPTIMAL=-28.971
 cd ../out/production/src/
 for (( i = 0; i < 50; i++ ))
 do

@@ -1,6 +1,7 @@
 package application
 
 import algorithms._
+import scala.collection._
 
 /**
  * Created by qmha on 10/28/14.
@@ -12,8 +13,5 @@ object Main extends App {
    * [Being updated]
    */
 
-  // Testbed
-  var agent:BinaryGA = new BinaryGA
-
-  agent.restore_population("/Users/qmha/projects/bhpsowm/src/population_store")
+  println("Test program:")
 }

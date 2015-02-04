@@ -283,44 +283,317 @@ object Benchmark {
     fx
   }
 
+  // Hartmann 3-dimensional function
   def f12(particle:ArrayBuffer[Int]):Double = {
     var i:Int = 0
     var j:Int = 0
     var fx:Double = 0
 
+    // c matrix size NUMBER_OF_INPUT x 1
+    var c = Array(
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2)
+    )
+
+    // matrix size NUMBER_OF_INPUT x 3
+    var a = Array(
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35),
+      Array(3.0, 10, 30),
+      Array(0.1, 10, 35)
+    )
+
+    // p matrix size NUMBER_OF_INPUT x 3
+    var p = Array(
+      Array(0.3689, 0.1170, 0.2673),
+      Array(0.4699, 0.4387, 0.7470),
+      Array(0.1091, 0.8732, 0.5547),
+      Array(0.381, 0.5743, 0.8828),
+      Array(0.3689, 0.1170, 0.2673),
+      Array(0.4699, 0.4387, 0.7470),
+      Array(0.1091, 0.8732, 0.5547),
+      Array(0.381, 0.5743, 0.8828),
+      Array(0.3689, 0.1170, 0.2673),
+      Array(0.4699, 0.4387, 0.7470),
+      Array(0.1091, 0.8732, 0.5547),
+      Array(0.381, 0.5743, 0.8828),
+      Array(0.3689, 0.1170, 0.2673),
+      Array(0.4699, 0.4387, 0.7470),
+      Array(0.1091, 0.8732, 0.5547),
+      Array(0.381, 0.5743, 0.8828),
+      Array(0.3689, 0.1170, 0.2673),
+      Array(0.4699, 0.4387, 0.7470),
+      Array(0.1091, 0.8732, 0.5547),
+      Array(0.381, 0.5743, 0.8828),
+      Array(0.3689, 0.1170, 0.2673),
+      Array(0.4699, 0.4387, 0.7470),
+      Array(0.1091, 0.8732, 0.5547),
+      Array(0.381, 0.5743, 0.8828),
+      Array(0.3689, 0.1170, 0.2673),
+      Array(0.4699, 0.4387, 0.7470),
+      Array(0.1091, 0.8732, 0.5547),
+      Array(0.381, 0.5743, 0.8828),
+      Array(0.3689, 0.1170, 0.2673),
+      Array(0.4699, 0.4387, 0.7470),
+      Array(0.1091, 0.8732, 0.5547),
+      Array(0.381, 0.5743, 0.8828)
+    )
+
     for (i <- 0 until Configuration.NUMBER_OF_INPUT) {
-      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
-      var x:Double = 0
-      for (j <- 0 until Configuration.ENCODE_BIT) {
-        base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
+      var base_2_1:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_3:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+
+      var x_1:Double = 0
+      var x_2:Double = 0
+      var x_3:Double = 0
+
+      for (k <- 0 until 1) {
+        for (j <- 0 until Configuration.ENCODE_BIT) {
+          base_2_1(j) = particle(k * Configuration.ENCODE_BIT + j)
+          base_2_2(j) = particle((k + 1) * Configuration.ENCODE_BIT + j)
+          base_2_3(j) = particle((k + 2) * Configuration.ENCODE_BIT + j)
+        }
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
-      fx += x * x
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_2)))
+      x_3 = Misc.base_2_to_10(base_2_3) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_3)))
+
+      //println("exp = " + exp(-1 * ((a(i)(0) * pow(x_1 - p(i)(0),2)) + (a(i)(1) * pow(x_2 - p(i)(1),2)) + (a(i)(2) * pow(x_3 - p(i)(2),2)))))
+
+      var tmp:Double = exp(-1 * ((a(i)(0) * pow(x_1 - p(i)(0),2)) + (a(i)(1) * pow(x_2 - p(i)(1),2)) + (a(i)(2) * pow(x_3 - p(i)(2),2))))
+      //println("Tmp = " + tmp + ". C = " + c(i)(0) + ". x1, x2, x3 = " + x_1 + ", " + x_2 + ", " + x_3)
+
+      fx += (c(i)(0) * tmp)
     }
 
-    fx
+    //println("Final fx = " + fx)
+    //println("=======================")
+
+    -fx
   }
 
+  // Hartmann 6-dimensional function
   def f13(particle:ArrayBuffer[Int]):Double = {
     var i:Int = 0
     var j:Int = 0
     var fx:Double = 0
 
-    for (i <- 0 until Configuration.NUMBER_OF_INPUT) {
-      var base_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
-      var x:Double = 0
-      for (j <- 0 until Configuration.ENCODE_BIT) {
-        base_2(j) = particle(i * Configuration.ENCODE_BIT + j)
+    // c matrix size NUMBER_OF_INPUT x 1
+    var c = Array(
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2),
+      Array(1.0),
+      Array(1.2),
+      Array(3.0),
+      Array(3.2)
+    )
+
+    // matrix size NUMBER_OF_INPUT x 3
+    var a = Array(
+      Array(10, 3, 17, 3.5, 1.7, 8),
+      Array(0.05, 10, 17, 0.1, 8, 14),
+      Array(3, 3.5, 1.7, 10, 17, 8),
+      Array(17, 8, 0.05, 10, 0.1, 14),
+      Array(10, 3, 17, 3.5, 1.7, 8),
+      Array(0.05, 10, 17, 0.1, 8, 14),
+      Array(3, 3.5, 1.7, 10, 17, 8),
+      Array(17, 8, 0.05, 10, 0.1, 14),
+      Array(10, 3, 17, 3.5, 1.7, 8),
+      Array(0.05, 10, 17, 0.1, 8, 14),
+      Array(3, 3.5, 1.7, 10, 17, 8),
+      Array(17, 8, 0.05, 10, 0.1, 14),
+      Array(10, 3, 17, 3.5, 1.7, 8),
+      Array(0.05, 10, 17, 0.1, 8, 14),
+      Array(3, 3.5, 1.7, 10, 17, 8),
+      Array(17, 8, 0.05, 10, 0.1, 14),
+      Array(10, 3, 17, 3.5, 1.7, 8),
+      Array(0.05, 10, 17, 0.1, 8, 14),
+      Array(3, 3.5, 1.7, 10, 17, 8),
+      Array(17, 8, 0.05, 10, 0.1, 14),
+      Array(10, 3, 17, 3.5, 1.7, 8),
+      Array(0.05, 10, 17, 0.1, 8, 14),
+      Array(3, 3.5, 1.7, 10, 17, 8),
+      Array(17, 8, 0.05, 10, 0.1, 14),
+      Array(10, 3, 17, 3.5, 1.7, 8),
+      Array(0.05, 10, 17, 0.1, 8, 14),
+      Array(3, 3.5, 1.7, 10, 17, 8),
+      Array(17, 8, 0.05, 10, 0.1, 14),
+      Array(10, 3, 17, 3.5, 1.7, 8),
+      Array(0.05, 10, 17, 0.1, 8, 14),
+      Array(3, 3.5, 1.7, 10, 17, 8),
+      Array(17, 8, 0.05, 10, 0.1, 14)
+    )
+
+    // p matrix size NUMBER_OF_INPUT x 3
+    var p = Array(
+      Array(0.1312, 0.1696, 0.5569, 0.0124, 0.8283, 0.5886),
+      Array(0.2329, 0.4135, 0.8307, 0.3736, 0.1004, 0.9991),
+      Array(0.2348, 0.1451, 0.3522, 0.2883, 0.3047, 0.6650),
+      Array(0.4047, 0.8828, 0.8732, 0.5743, 0.1091, 0.0381),
+      Array(0.1312, 0.1696, 0.5569, 0.0124, 0.8283, 0.5886),
+      Array(0.2329, 0.4135, 0.8307, 0.3736, 0.1004, 0.9991),
+      Array(0.2348, 0.1451, 0.3522, 0.2883, 0.3047, 0.6650),
+      Array(0.4047, 0.8828, 0.8732, 0.5743, 0.1091, 0.0381),
+      Array(0.1312, 0.1696, 0.5569, 0.0124, 0.8283, 0.5886),
+      Array(0.2329, 0.4135, 0.8307, 0.3736, 0.1004, 0.9991),
+      Array(0.2348, 0.1451, 0.3522, 0.2883, 0.3047, 0.6650),
+      Array(0.4047, 0.8828, 0.8732, 0.5743, 0.1091, 0.0381),
+      Array(0.1312, 0.1696, 0.5569, 0.0124, 0.8283, 0.5886),
+      Array(0.2329, 0.4135, 0.8307, 0.3736, 0.1004, 0.9991),
+      Array(0.2348, 0.1451, 0.3522, 0.2883, 0.3047, 0.6650),
+      Array(0.4047, 0.8828, 0.8732, 0.5743, 0.1091, 0.0381),
+      Array(0.1312, 0.1696, 0.5569, 0.0124, 0.8283, 0.5886),
+      Array(0.2329, 0.4135, 0.8307, 0.3736, 0.1004, 0.9991),
+      Array(0.2348, 0.1451, 0.3522, 0.2883, 0.3047, 0.6650),
+      Array(0.4047, 0.8828, 0.8732, 0.5743, 0.1091, 0.0381),
+      Array(0.1312, 0.1696, 0.5569, 0.0124, 0.8283, 0.5886),
+      Array(0.2329, 0.4135, 0.8307, 0.3736, 0.1004, 0.9991),
+      Array(0.2348, 0.1451, 0.3522, 0.2883, 0.3047, 0.6650),
+      Array(0.4047, 0.8828, 0.8732, 0.5743, 0.1091, 0.0381),
+      Array(0.1312, 0.1696, 0.5569, 0.0124, 0.8283, 0.5886),
+      Array(0.2329, 0.4135, 0.8307, 0.3736, 0.1004, 0.9991),
+      Array(0.2348, 0.1451, 0.3522, 0.2883, 0.3047, 0.6650),
+      Array(0.4047, 0.8828, 0.8732, 0.5743, 0.1091, 0.0381),
+      Array(0.1312, 0.1696, 0.5569, 0.0124, 0.8283, 0.5886),
+      Array(0.2329, 0.4135, 0.8307, 0.3736, 0.1004, 0.9991),
+      Array(0.2348, 0.1451, 0.3522, 0.2883, 0.3047, 0.6650),
+      Array(0.4047, 0.8828, 0.8732, 0.5743, 0.1091, 0.0381)
+    )
+
+    for (i <- 0 until 4) {
+      var base_2_1:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_2:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_3:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_4:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_5:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+      var base_2_6:ArrayBuffer[Int] = ArrayBuffer.fill(Configuration.ENCODE_BIT)(0)
+
+      var x_1:Double = 0
+      var x_2:Double = 0
+      var x_3:Double = 0
+      var x_4:Double = 0
+      var x_5:Double = 0
+      var x_6:Double = 0
+
+      for (k <- 0 until 1) {
+        for (j <- 0 until Configuration.ENCODE_BIT) {
+          base_2_1(j) = particle(k * Configuration.ENCODE_BIT + j)
+          base_2_2(j) = particle((k + 1) * Configuration.ENCODE_BIT + j)
+          base_2_3(j) = particle((k + 2) * Configuration.ENCODE_BIT + j)
+          base_2_4(j) = particle((k + 3) * Configuration.ENCODE_BIT + j)
+          base_2_5(j) = particle((k + 4) * Configuration.ENCODE_BIT + j)
+          base_2_6(j) = particle((k + 5) * Configuration.ENCODE_BIT + j)
+        }
       }
 
-      x = Misc.base_2_to_10(base_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2)))
 
-      fx += x * x
+      x_1 = Misc.base_2_to_10(base_2_1) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_1)))
+      x_2 = Misc.base_2_to_10(base_2_2) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_2)))
+      x_3 = Misc.base_2_to_10(base_2_3) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_3)))
+      x_4 = Misc.base_2_to_10(base_2_4) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_4)))
+      x_5 = Misc.base_2_to_10(base_2_5) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_5)))
+      x_6 = Misc.base_2_to_10(base_2_6) / pow(10, Misc.getDecimalPoint(Misc.base_2_to_10(base_2_6)))
+
+      var tmp:Double = exp(-1 *
+        (
+          (a(i)(0) * pow(x_1 - p(i)(0),2)) +
+            (a(i)(1) * pow(x_2 - p(i)(1),2)) +
+            (a(i)(2) * pow(x_3 - p(i)(2),2)) +
+              (a(i)(3) * pow(x_4 - p(i)(3),2)) +
+              (a(i)(4) * pow(x_5 - p(i)(4),2)) +
+              (a(i)(5) * pow(x_6 - p(i)(5),2))
+          )
+      )
+
+      fx += (c(i)(0) * tmp)
     }
 
-    fx
+    fx * (-1)
   }
 
   def f14(particle:ArrayBuffer[Int]):Double = {
