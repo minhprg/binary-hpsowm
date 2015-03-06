@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: bhpsowm.aux
+The style file: bibliography.bst
+Database file #1: bibliography.bib
+Warning--I didn't find a database entry for "cite10"
+Warning--empty journal in de1975analysis
+You've used 13 entries,
+            2785 wiz_defined-function locations,
+            664 strings with 6561 characters,
+and the built_in function-call counts, 7326 in all, are:
+= -- 646
+> -- 161
+< -- 19
++ -- 72
+- -- 54
+* -- 439
+:= -- 911
+add.period$ -- 19
+call.type$ -- 13
+change.case$ -- 73
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 658
+empty$ -- 671
+format.name$ -- 62
+if$ -- 1633
+int.to.chr$ -- 0
+int.to.str$ -- 13
+missing$ -- 125
+newline$ -- 44
+num.names$ -- 26
+pop$ -- 207
+preamble$ -- 1
+purify$ -- 53
+quote$ -- 0
+skip$ -- 236
+stack$ -- 0
+substring$ -- 500
+swap$ -- 384
+text.length$ -- 19
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 50
+warning$ -- 1
+while$ -- 72
+width$ -- 15
+write$ -- 135
+(There were 2 warnings)

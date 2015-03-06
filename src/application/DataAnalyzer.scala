@@ -33,7 +33,7 @@ object DataAnalyzer extends App {
       */
 
       // write to file
-      
+
     }
 
     println("Done!")

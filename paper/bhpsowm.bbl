@@ -1,0 +1,66 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem{clerc2002particle}
+Clerc, M., Kennedy, J.: The particle swarm-explosion, stability, and
+  convergence in a multidimensional complex space. Evolutionary Computation,
+  IEEE Transactions on  6(1),  58--73 (2002)
+
+\bibitem{de1975analysis}
+De~Jong, K.A.: Analysis of the behavior of a class of genetic adaptive systems
+  (1975)
+
+\bibitem{esmin2005hybrid}
+Esmin, A.A., Lambert-Torres, G., de~Souza, A.Z.: A hybrid particle swarm
+  optimization applied to loss power minimization. Power Systems, IEEE
+  Transactions on  20(2),  859--866 (2005)
+
+\bibitem{holland1992genetic}
+Holland, J.H.: Genetic algorithms. Scientific american  267(1),  66--72 (1992)
+
+\bibitem{juang2004hybrid}
+Juang, C.F.: A hybrid of genetic algorithm and particle swarm optimization for
+  recurrent network design. Systems, Man, and Cybernetics, Part B: Cybernetics,
+  IEEE Transactions on  34(2),  997--1006 (2004)
+
+\bibitem{kennedy2010particle}
+Kennedy, J.: Particle swarm optimization. In: Encyclopedia of Machine Learning,
+  pp. 760--766. Springer (2010)
+
+\bibitem{kennedy1997discrete}
+Kennedy, J., Eberhart, R.C.: A discrete binary version of the particle swarm
+  algorithm. In: Systems, Man, and Cybernetics, 1997. Computational Cybernetics
+  and Simulation., 1997 IEEE International Conference on. vol.~5, pp.
+  4104--4108. IEEE (1997)
+
+\bibitem{ling2008hybrid}
+Ling, S.H., Iu, H.H., Chan, K.Y., Lam, H.K., Yeung, B.C., Leung, F.H.: Hybrid
+  particle swarm optimization with wavelet mutation and its industrial
+  applications. Systems, Man, and Cybernetics, Part B: Cybernetics, IEEE
+  Transactions on  38(3),  743--763 (2008)
+
+\bibitem{michalewicz1996genetic}
+Michalewicz, Z.: Genetic algorithms+ data structures= evolution programs.
+  springer (1996)
+
+\bibitem{noel2004simulation}
+Noel, M.M., Jannett, T.C.: Simulation of a new hybrid particle swarm
+  optimization algorithm. In: System Theory, 2004. Proceedings of the
+  Thirty-Sixth Southeastern Symposium on. pp. 150--153. IEEE (2004)
+
+\bibitem{ross1994applications}
+Ross, P., Corne, D.: Applications of genetic algorithms. AISB Quaterly on
+  Evolutionary Computation  89,  23--30 (1994)
+
+\bibitem{shi1998modified}
+Shi, Y., Eberhart, R.: A modified particle swarm optimizer. In: Evolutionary
+  Computation Proceedings, 1998. IEEE World Congress on Computational
+  Intelligence., The 1998 IEEE International Conference on. pp. 69--73. IEEE
+  (1998)
+
+\bibitem{yao1999evolutionary}
+Yao, X., Liu, Y., Lin, G.: Evolutionary programming made faster. Evolutionary
+  Computation, IEEE Transactions on  3(2),  82--102 (1999)
+
+\end{thebibliography}

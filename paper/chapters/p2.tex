@@ -1,0 +1,32 @@
+A binary-based particle consists of a bit string in which each element can take a value of one or zero. Such particle ``moves'' by flipping a number of its bits from 0 to 1 and vice versa. A velocity vector composed of bits could be used to modify a binary particle. However, applying formula (\ref{eq:formula1}) in a binary space by replacing $v^p$, $pbest^p$ and $gbest$ with bit strings would actually make the particle move randomly around the problem space, not following any direction. The reason for this is that flipping a bit from 0 to 1 means taking a full jump from the lower bound to the upper bound.
+
+What would be the velocity for a binary-based particle? How trajectory should be understood in a binary problem space? These two questions can be answered by defining the values in the velocity vector as ``\emph{probabilities that a bit will take value 1 or 0}''. Such probability value is used in the following way:
+
+\begin{verbatim}
+if (rand() < probability) then
+    x = value1;
+else
+    x = value2;
+\end{verbatim}
+
+Note that the $rand()$ function returns a real number $x$ such that $ 0 \leq x < 1$.
+
+Thus, the velocity vector $v^p$ must be scaled down to real numbers in the range $[0.0, 1.0]$ and $x_j^p$ will take either 0 or 1 as value. Specifically, the velocity value, which is between 0.0 and 1.0, will be compared to a random number in the same range. If it is higher than the random value,$x_j^p$ will take value 1, otherwise $x_j^p$ will take value 0. Note that in the original version of PSO, the magnitudes on the dimensions of velocity vector are limited by their dynamic range, which can be quite large. The rate at which the velocity increases or decreases is also high. To address this problem, a logistic function -- the sigmoid function -- was used to scale down the velocity values. The function is as follow:
+
+\begin{equation} \label{eq:formula3}
+S(t) = \frac{1}{(1 + e^{-t})}
+\end{equation}
+
+With the sigmoid function, we can keep the old velocity update formula (\ref{eq:formula1}). This function makes sure it generates a number between 0.0 and 1.0 from any real number $t$. This property eliminates the need of a $v^{max}$ value which was used in the original version to limit the particle speed to about one tenth of the search space's length. With the new definition of velocity and the sigmoid function, now particles are updated using the following logic instead of formula (\ref{eq:formula2}):
+
+\begin{equation} \label{eq:formula4}
+x_j^p =
+\begin{cases}
+1, & rand() < S(v_j^p)\\
+0, & rand() > S(v_j^p)
+\end{cases}
+\end{equation}
+
+This transformation makes the particles move more slowly on each dimension towards the two best values. As a result, one bit would change from 0 to 1 before another does, whereas previously, many bits would flip at the same time due to using a bit string as a velocity vector. This approach allows the particles to scan the problem space much more carefully, reducing the risk of ``stepping over'' a good solution.
+
+Trajectory in a binary space can now be explained. In a continuous space, the direction of the velocity vector decides the particle's trajectory. As a particle moves closer to the global best position, its coordinates get closer to the coordinates of $gbest$. In a binary space, the ``position'' of a particle is actually defined by the velocity vector, which contains probabilities. A particle is said to be close to another particle when the probabilities of corresponding bits are close to each other. One interesting thing about this algorithm is that, even when two particles are at the same position they could result in different bit strings thanks to the random value in the particle update process described in (\ref{eq:formula4}). Note that with a probability value of 0.9, there is still a 10\% chance that a bit would be 0.

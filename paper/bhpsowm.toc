@@ -1,0 +1,6 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Introduction}{13}
+\contentsline {chapter}{\numberline {2}Background}{15}
+\contentsline {chapter}{\numberline {3}Monte Carlo Approaches}{17}
+\contentsline {chapter}{\numberline {4}MCTS in Quoridor}{19}
+\contentsline {chapter}{\numberline {5}Conclusion}{21}

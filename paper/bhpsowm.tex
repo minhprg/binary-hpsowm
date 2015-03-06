@@ -1,0 +1,109 @@
+\documentclass{llncs}
+\usepackage{llncsdoc}
+
+% Bib
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+\renewcommand\bibname{References}
+
+% Table
+\usepackage{array}
+
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+
+% utf8
+\usepackage[utf8]{inputenc}
+
+% math
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\usepackage[toc,page]{appendix}
+
+% lscape.sty Produce landscape pages in a (mainly) portrait document.
+\usepackage{lscape}
+\usepackage{rotating}
+
+% algorithms
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{algorithmic}
+
+% float
+\usepackage{float}
+
+% graphics
+\usepackage{graphicx}
+\graphicspath{ {resources/} }
+
+% text components
+\usepackage{textcomp}
+
+% euro symbol
+\usepackage[official]{eurosym}
+
+\newcommand\myeq{\stackrel{\mathclap{\normalfont\mbox{def}}}{=}}
+
+% page style
+\pagestyle{headings}
+
+
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+% document settings
+\title{Binary Hybrid Particle Swarm Optimization with Wavelet Mutation}
+
+\date{December 21, 2014}
+\author{Quang Anh Tran\inst{1} \and Quang Minh Ha\inst{2}
+\and Quan Dang Dinh\inst{3} \and Frank Jiang\inst{4}}
+
+\institute{Faculty of Information Technology, Hanoi University, Vietnam\\
+\email{anhtq@hanu.edu.vn}
+\and
+Faculty of Information Technology, Hanoi University, Vietnam\\
+\email{minhhq\_fit@hanu.edu.vn}
+\and
+Faculty of Information Technology, Hanoi University, Vietnam\\
+\email{quandd.vnip@gmail.com}
+\and
+School of Engineering and IT, University of New South Wales, Canberra, Australia\\
+\email{F.Jiang@adfa.edu.au}}
+
+% Begin 
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+Particle swarm optimization (PSO) is an evolutionary algorithm in which individuals, called particles, move around a multi-dimensional problem space at different directions (trajectories) and speeds (velocities) to find the best solution. A particle movement is based on its previous best result and the previous best result of the entire population. In one of the current PSO variants - HPSOWM \cite{ling2008hybrid}, a mutation process based on wavelet theory was added to the original PSO to prevent premature conclusion of the best solution. This hybrid PSO has improved solution stability and quality over the original algorithm as well as many other hybrid PSO algorithms. However, it is limited to work on a continuous problem space. In this research, we propose a reworked version of HPSOWM which operates on binary-based problem space, and it is called "Binary Hybrid Particle Swarm Optimization with Wavelet Mutation" (BHPSOWM). In this version, the movement mechanism of particles as well as the mutation process are modified and transformed to work with binary element. We conducted an experiment which compare the performance of the binary version of three algorithms: Genetic Algorithm (GA), Particle Swarm Optimization (BPSO) and our proposed algorithm - BHPSOWM. The result showed that our proposed model deliver better performance in terms of the mean cost value, standard deviation and the convergence rate under the same settings.
+
+\keywords{particle swarm optimization, genetic algorithms, binary}
+\end{abstract}
+
+
+\section{Introduction}
+\input{chapters/p1}
+
+\section{Backgrounds}
+\input{chapters/p5}
+
+\section{From PSO, HPSOWM to BPSO, BHPSOWM}
+\input{chapters/p2}
+
+\section{Experiments \& Results}
+\input{chapters/p3}
+
+\section{Conclusions}
+\input{chapters/p4}
+
+\section{Acknowledgements}
+This research was fully supported by the Vietnam National Foundation for Science and Technology Development (NAFOSTED) under project number 102.01-2012.04
+
+% bibliography
+\bibliographystyle{bibliography}
+\bibliography{bibliography}
+%\nocite{*}
+
+\end{document}
