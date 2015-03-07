@@ -24,37 +24,64 @@ object DataAnalyzer extends App {
 
       // write to file
       import java.io._
+      var currentTime = 1 // to combine same moment
+      var currentObjective:Double = 0
       // ga (time, iter)
       var ga_time = new PrintWriter(new File(this.prefix + "set_" + i + "_ga_time"))
       var ga_iter = new PrintWriter(new File(this.prefix + "set_" + i + "_ga_iter"))
       for (i <- 0 until objectiveGA.length) {
-        if (timeGA(i) != 0 && objectiveGA(i) != 0) {
-          ga_time.write(timeGA(i) + "," + objectiveGA(i) + "\n")
+        if (timeGA(i) + objectiveGA(i) != 0) {
           ga_iter.write(iterationGA(i) + "," + objectiveGA(i) + "\n")
+          if (currentTime != timeGA(i)) {
+            ga_time.write(currentTime + "," + currentObjective + "\n")
+            currentTime = timeGA(i)
+            currentObjective = 0
+          }
+          else {
+            currentObjective += objectiveGA(i)
+          }
         }
       }
       ga_time.close
       ga_iter.close
 
       // pso
+      currentTime = 1
+      currentObjective = 0
       var pso_time = new PrintWriter(new File(this.prefix + "set_" + i + "_pso_time"))
       var pso_iter = new PrintWriter(new File(this.prefix + "set_" + i + "_pso_iter"))
       for (i <- 0 until objectivePSO.length) {
-        if (timePSO(i) != 0 && objectivePSO(i) != 0) {
-          pso_time.write(timePSO(i) + "," + objectivePSO(i) + "\n")
+        if (timePSO(i) + objectivePSO(i) != 0) {
           pso_iter.write(iterationPSO(i) + "," + objectivePSO(i) + "\n")
+          if (currentTime != timePSO(i)) {
+            pso_time.write(currentTime + "," + currentObjective + "\n")
+            currentTime = timePSO(i)
+            currentObjective = 0
+          }
+          else {
+            currentObjective += objectivePSO(i)
+          }
         }
       }
       pso_time.close
       pso_iter.close
 
       // hpsowm
+      currentTime = 1
+      currentObjective = 0
       var hpsowm_time = new PrintWriter(new File(this.prefix + "set_" + i + "_hpsowm_time"))
       var hpsowm_iter = new PrintWriter(new File(this.prefix + "set_" + i + "_hpsowm_iter"))
       for (i <- 0 until objectiveHPSOWM.length) {
-        if (timeHPSOWM(i) != 0 && objectiveHPSOWM(i) != 0) {
-          hpsowm_time.write(timeHPSOWM(i) + "," + objectiveHPSOWM(i) + "\n")
+        if (timeHPSOWM(i) + objectiveHPSOWM(i) != 0) {
           hpsowm_iter.write(iterationHPSOWM(i) + "," + objectiveHPSOWM(i) + "\n")
+          if (currentTime != timeHPSOWM(i)) {
+            hpsowm_time.write(currentTime + "," + currentObjective + "\n")
+            currentTime = timeHPSOWM(i)
+            currentObjective = 0
+          }
+          else {
+            currentObjective += objectiveHPSOWM(i)
+          }
         }
       }
       hpsowm_time.close
