@@ -17,23 +17,48 @@ object DataAnalyzer extends App {
    */
   def run = {
     println("Running....")
-    for (i <- 1 to 1) {
+    for (i <- 1 to 18) {
       // process
+      println("...set " + i)
       setProcessing(i)
 
-      // test
-      /*
-      var counter:Int = 0
-      for (i <- 1 until timeGA.length) {
-        println(timeGA(i) + " " + iterationGA(i) + " " + objectiveGA(i))
-        if (timeGA(i) != 0)
-          counter += 1
-      }
-      println("Counter = " + counter)
-      */
-
       // write to file
+      import java.io._
+      // ga (time, iter)
+      var ga_time = new PrintWriter(new File(this.prefix + "set_" + i + "_ga_time"))
+      var ga_iter = new PrintWriter(new File(this.prefix + "set_" + i + "_ga_iter"))
+      for (i <- 0 until objectiveGA.length) {
+        if (timeGA(i) != 0 && objectiveGA(i) != 0) {
+          ga_time.write(timeGA(i) + "," + objectiveGA(i) + "\n")
+          ga_iter.write(iterationGA(i) + "," + objectiveGA(i) + "\n")
+        }
+      }
+      ga_time.close
+      ga_iter.close
 
+      // pso
+      var pso_time = new PrintWriter(new File(this.prefix + "set_" + i + "_pso_time"))
+      var pso_iter = new PrintWriter(new File(this.prefix + "set_" + i + "_pso_iter"))
+      for (i <- 0 until objectivePSO.length) {
+        if (timePSO(i) != 0 && objectivePSO(i) != 0) {
+          pso_time.write(timePSO(i) + "," + objectivePSO(i) + "\n")
+          pso_iter.write(iterationPSO(i) + "," + objectivePSO(i) + "\n")
+        }
+      }
+      pso_time.close
+      pso_iter.close
+
+      // hpsowm
+      var hpsowm_time = new PrintWriter(new File(this.prefix + "set_" + i + "_hpsowm_time"))
+      var hpsowm_iter = new PrintWriter(new File(this.prefix + "set_" + i + "_hpsowm_iter"))
+      for (i <- 0 until objectiveHPSOWM.length) {
+        if (timeHPSOWM(i) != 0 && objectiveHPSOWM(i) != 0) {
+          hpsowm_time.write(timeHPSOWM(i) + "," + objectiveHPSOWM(i) + "\n")
+          hpsowm_iter.write(iterationHPSOWM(i) + "," + objectiveHPSOWM(i) + "\n")
+        }
+      }
+      hpsowm_time.close
+      hpsowm_iter.close
     }
 
     println("Done!")
