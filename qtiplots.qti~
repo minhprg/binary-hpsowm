@@ -50432,7 +50432,7 @@ EnabledTickLabels	1	1	1	1
 </multiLayer>
 <table>
 f12_iter	4491	4	07/03/2015 22:54
-geometry	0	0	483	422	
+geometry	980	620	483	422	minimized	
 header	1[X]	GA[Y]	BPSO[Y]	BHPSOWM[Y]
 ColWidth	100	100	100	100	
 <com>
@@ -54938,7 +54938,7 @@ WindowLabel		0
 </table>
 <multiLayer>
 f12_graph	1	1	07/03/2015 22:54
-geometry	483	0	746	610	active
+geometry	0	596	746	610	minimized	active
 WindowLabel		0
 Margins	5	5	5	5
 Spacing	5	5

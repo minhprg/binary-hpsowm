@@ -137,12 +137,13 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
 
 \subsection{Results and Discussions}
 
-- Compare BHPSOWM with BPSO and GA \\
-- Use benchmark functions in three categories: unimodal functions, multimodal functions with few local minima, multimodal functions with many local minima \\
-- Experiment settings \\
-- Show convergence table \\
-- Show result table with Standard Deviation, ... \\
+The experiment compared the performance of three binary version of GA, PSO and HPSOWM which are Binary GA, BPSO and BHPSOWM. The overall results showed that HPSOWM, in many benchmark functions, outperformed the other two methods in finding the best objective value in a limited running time. In some functions, it can even find the optimal value (f1, f6).
 
+As can be seen from tables \ref{tab:graph1}, \ref{tab:graph2}, \ref{tab:graph3}, the performance of HPSOWM after 5000 iterations outperformed the other two in many benchmark functions among three categories (f1, f3, f6, f9, f10, f11, f13, f14). We can also see that, the convergence rate of HPSOWM is not as fast as Binary GA and BPSO. However, it converges steadily in all benchmark functions, especially in multimodal functions with many local minima like f14 and f8. This is an important factor, as the search space of a function is unknown, therefore an optimization algorithm should be able to steadily jump to another area to keep searching instead of being trapped in a local minima after a very fast convergence at the beginning of the search.
+
+Additionally, GA has the worst performance among benchmark functions. In some function, such as f12 (hartmann's family 3-dimensional), it is quickly fall into a local minima. BPSO shares the same behavior but performed better. Both of them converge very fast in the first 500 iterations, but then are trapped and cannot jump out.
+
+According to tables \ref{tab:tb2}, \ref{tab:tb3}, \ref{tab:tb4}, we can easily see that, HPSOWM has the smaller values in mean and standard deviation. It means that the solution's quality and stability are good.
 
 
 \begin{table}[H]
@@ -183,22 +184,22 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
     &
     \begin{tabular}[c]{@{}c@{}}
     \includegraphics[width=60mm]{resources/f10_graph} \\
-    $f_10(x)$
+    $f_{10}(x)$
     \end{tabular}
     \\
     \begin{tabular}[c]{@{}c@{}}
     \includegraphics[width=60mm]{resources/f11_graph} \\
-    $f_11(x)$
+    $f_{11}(x)$
     \end{tabular}
     &
     \begin{tabular}[c]{@{}c@{}}
     \includegraphics[width=60mm]{resources/f12_graph} \\
-    $f_12(x)$
+    $f_{12}(x)$
     \end{tabular}
     \\
     \begin{tabular}[c]{@{}c@{}}
     \includegraphics[width=60mm]{resources/f13_graph} \\
-    $f_13(x)$
+    $f_{13}(x)$
     \end{tabular}
     &
 
@@ -212,12 +213,12 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \begin{tabular*}{\textwidth}{cc}
     \begin{tabular}[c]{@{}c@{}}
     \includegraphics[width=60mm]{resources/f14_graph} \\
-    $f_14(x)$
+    $f_{14}(x)$
     \end{tabular}
     &
     \begin{tabular}[c]{@{}c@{}}
     \includegraphics[width=60mm]{resources/f18_graph} \\
-    $f_18(x)$
+    $f_{18}(x)$
     \end{tabular}
 
     \\
@@ -251,21 +252,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  0.0\\
+  42.396\\
+  52.112
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  312.18\\
+  612.251\\
+  204.076
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  216.32\\
+  487.218\\
+  175.824
   \end{tabular} 
   \\ \hline
   % end of function 
@@ -283,21 +284,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  32.154\\
+  39.285\\
+  2.646
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  40.099\\
+  58.319\\
+  9.376
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  38.756\\
+  54.960\\
+  9.062
   \end{tabular} 
   \\ \hline
   % end of function 
@@ -315,21 +316,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  7.5\\
+  7.614\\
+  0.067
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  7.843\\
+  8.611\\
+  0.353
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  7.759\\
+  8.357\\
+  0.338
   \end{tabular} 
   \\ \hline
   % end of function 
@@ -347,21 +348,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  1.740\\
+  2.115\\
+  0.111
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  1.800\\
+  2.030\\
+  0.09
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  1.727\\
+  1.981\\
+  0.112
   \end{tabular} 
   \\ \hline
   % end of function 
@@ -379,21 +380,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  20.8\\
+  25.276\\
+  1.389
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  16.0\\
+  26.524\\
+  2.186
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  11.3\\
+  14.171\\
+  1.281
   \end{tabular} 
   \\ \hline
   % end of function 
@@ -411,21 +412,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  0.0\\
+  2.146\\
+  0.813
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  5.42\\
+  10.853\\
+  2.597
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  4.32\\
+  8.52\\
+  2.278
   \end{tabular} 
   \\ \hline
   % end of function 
@@ -443,21 +444,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -0.941\\
+  -0.839\\
+  0.233
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -0.941\\
+  -0.591\\
+  0.356
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -0.941\\
+  -0.059\\
+  0.194
   \end{tabular} 
   \\ \hline
   % end of function  
@@ -497,21 +498,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  1.000000755\\
+  2.268\\
+  1.485
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  1.000000755\\
+  7.474\\
+  23.380
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  1.000000808\\
+  6.273\\
+  4.321
   \end{tabular} 
   \\ \hline
   % end of function  
@@ -529,28 +530,28 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  0.0008\\
+  0.006\\
+  0.005
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  0.001\\
+  0.025\\
+  0.029
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  0.012\\
+  0.102\\
+  0.041
   \end{tabular} 
   \\ \hline
   % end of function  
   
   % begin function
   \begin{tabular}[c]{@{}c@{}}
-  $f_10(x)$\\
+  $f_{10}(x)$\\
   $T = 120$
   \end{tabular}
   &
@@ -561,28 +562,28 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -0.708\\
+  -0.708\\
+  0.0
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -0.708\\
+  -0.703\\
+  0.004
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -0.708\\
+  -0.690\\
+  0.021
   \end{tabular} 
   \\ \hline
   % end of function  
   
   % begin function
   \begin{tabular}[c]{@{}c@{}}
-  $f_11(x)$\\
+  $f_{11}(x)$\\
   $T = 120$
   \end{tabular}
   &
@@ -593,28 +594,28 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
+  -0.999\\
+  -0.999\\
   0.000
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -0.999\\
+  -0.954\\
+  0.058
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -0.999\\
+  -0.999\\
+  6.096
   \end{tabular} 
   \\ \hline
   % end of function  
   
   % begin function
   \begin{tabular}[c]{@{}c@{}}
-  $f_12(x)$\\
+  $f_{12}(x)$\\
   $T = 120$
   \end{tabular}
   &
@@ -625,28 +626,28 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -27.749\\
+  -27.488\\
+  0.193
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -27.749\\
+  -27.366\\
+  1.057
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -20.086\\
+  -8.169\\
+  1.702
   \end{tabular} 
   \\ \hline
   % end of function  
   
   % begin function
   \begin{tabular}[c]{@{}c@{}}
-  $f_13(x)$\\
+  $f_{13}(x)$\\
   $T = 120$
   \end{tabular}
   &
@@ -657,21 +658,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -3.31999\\
+  -3.281\\
+  0.099
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -3.31989\\
+  -3.142\\
+  0.210
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  -3.135\\
+  -2.698\\
+  0.083
   \end{tabular} 
   \\ \hline
   % end of function  
@@ -703,7 +704,7 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   
   % begin function
   \begin{tabular}[c]{@{}c@{}}
-  $f_14(x)$\\
+  $f_{14}(x)$\\
   $T = 120$
   \end{tabular}
   &
@@ -714,21 +715,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  0.4\\
+  7.148\\
+  5.956
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  2.424\\
+  31.692\\
+  18.627
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  3.532\\
+  26.948\\
+  16.550
   \end{tabular} 
   \\ \hline
   % end of function  
@@ -736,7 +737,7 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   
   % begin function
   \begin{tabular}[c]{@{}c@{}}
-  $f_15(x)$\\
+  $f_{15}(x)$\\
   $T = 120$
   \end{tabular}
   &
@@ -747,20 +748,52 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
+  25.279\\
+  76.182\\
+  26.749
+  \end{tabular}
+  &
+  \begin{tabular}{@{}rrr@{}}
+  115.505\\
+  275.218\\
+  78.383
+  \end{tabular} 
+  &
+  \begin{tabular}{@{}rrr@{}}
+  55.839\\
+  226.633\\
+  84.434
+  \end{tabular} 
+  \\ \hline
+  % end of function  
+  
+  % begin function
+  \begin{tabular}[c]{@{}c@{}}
+  $f_{16}(x)$\\
+  $T = 120$
+  \end{tabular}
+  &
+  \begin{tabular}[c]{@{}lll@{}}
+  Best\\
+  Mean\\
+  Std Dev
+  \end{tabular}
+  &
+  \begin{tabular}{@{}rrr@{}}
+  $10^(-9)$\\
+  $10^(-9)$\\
   0.000
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
+  $10^(-9)$\\
+  $10^(-9)$\\
   0.000
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
+  $10^(-9)$\\
+  $10^(-9)$\\
   0.000
   \end{tabular} 
   \\ \hline
@@ -768,7 +801,7 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   
   % begin function
   \begin{tabular}[c]{@{}c@{}}
-  $f_16(x)$\\
+  $f_{17}(x)$\\
   $T = 120$
   \end{tabular}
   &
@@ -779,20 +812,20 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
+  1.718\\
+  1.718\\
   0.000
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
+  1.718\\
+  1.718\\
   0.000
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
+  1.718\\
+  1.718\\
   0.000
   \end{tabular} 
   \\ \hline
@@ -800,7 +833,7 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   
   % begin function
   \begin{tabular}[c]{@{}c@{}}
-  $f_17(x)$\\
+  $f_{18}(x)$\\
   $T = 120$
   \end{tabular}
   &
@@ -811,53 +844,21 @@ As of the binary version, we also adapt the settings from \cite{kennedy1997discr
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  946.487\\
+  1984.875\\
+  267.413
   \end{tabular}
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  1153.454\\
+  1960.315\\
+  401.983
   \end{tabular} 
   &
   \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
-  \end{tabular} 
-  \\ \hline
-  % end of function  
-  
-  % begin function
-  \begin{tabular}[c]{@{}c@{}}
-  $f_18(x)$\\
-  $T = 120$
-  \end{tabular}
-  &
-  \begin{tabular}[c]{@{}lll@{}}
-  Best\\
-  Mean\\
-  Std Dev
-  \end{tabular}
-  &
-  \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
-  \end{tabular}
-  &
-  \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
-  \end{tabular} 
-  &
-  \begin{tabular}{@{}rrr@{}}
-  0.000\\
-  0.000\\
-  0.000
+  1210.081\\
+  2072.108\\
+  472.012
   \end{tabular} 
   \\ \hline
   % end of function  
